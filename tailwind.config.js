@@ -16,6 +16,7 @@ module.exports = {
       textColor: {
         dark: "#2B2B2B",
         'dark-1': "#54595f",
+        'dark-2': "#818181",
         primary: "#7C58BF",
         secondary: "#FCCB0B",
         whatsapp: '#16A42A'
@@ -25,6 +26,8 @@ module.exports = {
       },
       borderColor: {
         primary: "#7C58BF",
+        'dark-1': "#54595f",
+        'dark-2': "#818181",
       }
     },
   },

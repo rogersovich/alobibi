@@ -11,11 +11,15 @@ const routes = [
     component: () => import("@/views/Home/Index.vue"),
     children: [
       {
-        path: '',
-        name: 'Home',
+        path: "",
+        name: "Home",
         component: () => import("@/views/Home/Home.vue"),
-      }
-    ]
+        meta: {
+          key: "home",
+          type: "page",
+        },
+      },
+    ],
   },
   // {
   //   path: "/login",
@@ -25,28 +29,58 @@ const routes = [
   //   },
   //   component: () => import("@/views/Auth/Login.vue"),
   // },
-  // {
-  //   path: "/cari-proyek",
-  //   component: () => import("@/views/Project/Index.vue"),
-  //   children: [
-  //     {
-  //       path: "",
-  //       name: "SearchProyek",
-  //       component: () => import("@/views/Project/Project.vue"),
-  //       meta: {
-  //         key: "search-project",
-  //       },
-  //     },
-  //     {
-  //       path: ":slug/:id",
-  //       name: "ProjectDetail",
-  //       component: () => import("@/views/Project/Detail.vue"),
-  //       meta: {
-  //         key: "search-project",
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    path: "/layanan",
+    component: () => import("@/views/Service/Index.vue"),
+    children: [
+      {
+        path: "",
+        redirect: { name: "Home" },
+        meta: {
+          key: "service",
+          type: "detail",
+        },
+      },
+      {
+        path: "harian",
+        component: () => import("@/views/Service/Harian/Index.vue"),
+        meta: {
+          key: "service",
+          type: "detail",
+        },
+        children: [
+          {
+            path: ":service",
+            name: "Service",
+            component: () => import("@/views/Service/Harian/Service.vue"),
+            meta: {
+              key: "service",
+              type: "detail",
+            },
+          },
+        ],
+      },
+      {
+        path: "bulanan",
+        component: () => import("@/views/Service/Bulanan/Index.vue"),
+        meta: {
+          key: "service",
+          type: "detail",
+        },
+        children: [
+          {
+            path: "rekrut-bibi-bulanan",
+            name: "RekrutBulanan",
+            component: () => import("@/views/Service/Bulanan/RekrutBulanan.vue"),
+            meta: {
+              key: "service",
+              type: "detail",
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const router = new Router({

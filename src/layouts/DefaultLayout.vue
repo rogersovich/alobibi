@@ -14,6 +14,14 @@
           height="80"
           class="tw-sticky tw-z-20 tw-top-0 tw-block"
         >
+          <div v-if="meta_type === 'detail'">
+            <v-btn icon exact :to="{ name: 'Home' }">
+              <v-icon color="#fff" class="tw-text-4xl">
+                mdi-arrow-left-circle
+              </v-icon>
+            </v-btn>
+          </div>
+          <v-spacer v-if="meta_type === 'detail'"></v-spacer>
           <div>
             <v-img
               :src="require('@/assets/img/logo.png')"
@@ -42,22 +50,22 @@
             class="tw-sticky tw-top-20 tw-z-20 tw-w-full tw-left-0"
             v-if="show_nav"
           >
-              <v-list class="tw-shadow-sm">
-            <v-list-item-group v-model="navigation" mandatory>
+            <v-list class="tw-shadow-sm">
+              <v-list-item-group v-model="navigation" mandatory>
                 <v-list-item
                   v-for="(item, i) in navigations"
                   :key="i"
                   :value="item.value"
                   color="#7C58BF"
                 >
-                  <v-list-content>
+                  <v-list-item-content>
                     <v-list-item-title class="tw-uppercase tw-font-medium">
                       {{ item.text }}
                     </v-list-item-title>
-                  </v-list-content>
+                  </v-list-item-content>
                 </v-list-item>
-            </v-list-item-group>
-              </v-list>
+              </v-list-item-group>
+            </v-list>
           </div>
         </v-expand-transition>
         <v-main>
@@ -87,8 +95,17 @@ export default {
           value: "kontak",
           text: "kontak",
         },
+        {
+          value: "login-or-regis",
+          text: "Login/Register",
+        },
       ],
     };
+  },
+  computed: {
+    meta_type() {
+      return this.$route.meta.type;
+    },
   },
 };
 </script>
